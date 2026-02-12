@@ -42,9 +42,9 @@ const Navigation: React.FC = () => {
             <img 
               src={`${ASSETS_BASE}/logo.jpg`} 
               alt="TSUKURIDANOSU Logo" 
-              className="h-8 w-auto md:h-10 object-contain group-hover:drop-shadow-[0_0_8px_rgba(230,0,0,0.8)] transition-all duration-300"
+              className="h-8 w-8 md:h-10 md:w-10 object-contain shrink-0 group-hover:drop-shadow-[0_0_8px_rgba(230,0,0,0.8)] transition-all duration-300"
             />
-            <div className="text-xl font-display font-bold tracking-[0.2em] text-white mix-blend-difference">
+            <div className="text-sm md:text-xl font-display font-bold tracking-[0.2em] text-white mix-blend-difference truncate max-w-[200px] md:max-w-none">
               TSUKURIDANOSU
             </div>
           </div>

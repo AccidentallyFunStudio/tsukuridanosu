@@ -60,17 +60,22 @@ const Discography: React.FC = () => {
             const isComingSoon = release.year === 'Coming Soon';
             const isActive = activeRelease?.id === release.id;
             
+            // Optimize image loading for mobile: Resize to 500px width, quality 80, convert to WebP
+            const optimizedUrl = `https://wsrv.nl/?url=${encodeURIComponent(release.coverUrl)}&w=500&q=80&output=webp`;
+            
             return (
               <div 
                 key={release.id} 
                 className="flex-shrink-0 w-[300px] md:w-[400px] snap-center group cursor-pointer"
                 onClick={() => handlePlay(release)}
               >
-                <div className={`relative aspect-square overflow-hidden mb-6 bg-charcoal border transition-colors duration-300 ${isActive ? 'border-intense-red' : 'border-white/5'}`}>
+                {/* Fixed height instead of aspect-square to prevent layout collapse on mobile */}
+                <div className={`relative w-full h-[300px] md:h-[400px] overflow-hidden mb-6 bg-charcoal border transition-colors duration-300 ${isActive ? 'border-intense-red' : 'border-white/5'}`}>
                    <img 
-                     src={release.coverUrl} 
+                     src={optimizedUrl} 
                      alt={release.title} 
-                     className={`w-full h-full transition-transform duration-700 group-hover:scale-110 
+                     loading="lazy"
+                     className={`w-full h-full block transition-transform duration-700 group-hover:scale-110 
                        ${isComingSoon ? 'object-contain p-12 opacity-50 grayscale' : 'object-cover grayscale group-hover:grayscale-0'}
                      `}
                    />
